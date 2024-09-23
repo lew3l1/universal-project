@@ -1,0 +1,112 @@
+* {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-group img {
+    width: 60px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.left-group h1 {
+    font-size: 18px;
+}
+
+.center-group {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.center-group h1 {
+    font-size: 30px;
+    margin: 0;
+    margin-right: 100px;
+}
+
+.right-group {
+    text-align: right;
+    display: flex;
+    align-items: flex-start;
+    gap: 50px;
+}
+
+.sign-in-link {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 10px; /* Расположение над погодой */
+}
+
+.sign-in-link img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.sign-in-link:hover {
+    text-decoration: underline;
+}
+
+.date-box {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+#weather {
+    font-size: 16px;
+    color: #333;
+}
+
+#weather img {
+    width: 20px;
+    vertical-align: middle;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    background-color: #333;
+    justify-content: center;
+    height: 400px;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    display: block;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+}

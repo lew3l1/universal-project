@@ -6,18 +6,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $login = $_POST['login'];
     $password = $_POST['password'];
 
-    // Подготовленный запрос для предотвращения SQL инъекций
-    $stmt = $pdo->prepare("SELECT password FROM users WHERE login = ?");
-    $stmt->execute([$login]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+   
+    $stmt = $conn->prepare("SELECT id, password FROM users WHERE login = ?");
+    $stmt->bind_param("s", $login);
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($userId, $hashedPassword);
+    $stmt->fetch();
 
-    if ($user && password_verify($password, $user['password'])) {
-        echo '<script>("Авторизация успешна!")</script>';   
-        // Здесь вы можете создать сессию для пользователя или выполнить другую необходимую логику
-        header("Location: ../index.php");
-        
+    if ($stmt->num_rows > 0 && password_verify($password, $hashedPassword)) {
+      
+        $_SESSION['user_id'] = $userId;
+
+        echo '<script>alert("Авторизация успешна!"); window.location.href="../index.php";</script>';
+        exit; 
     } else {
-        echo '<script>("Неверный логин или пароль.")</script>';
+        echo '<script>alert("Неверный логин или пароль."); window.history.back();</script>';
     }
+
+    $stmt->close();
 }
 ?>

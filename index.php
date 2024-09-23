@@ -1,3 +1,8 @@
+<?php
+require_once "php/connect.php";
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -16,15 +21,34 @@
             <div class="header-group center-group">
                 <h1>Universal</h1>
             </div>
-        <div class="header-group right-group">
+            <div class="header-group right-group">
                 <div class="date-box">
                     <?php include 'php/date.php'; ?>
                 </div>
                 <div id="weather">
                     <img src="/img/svg/Sun.svg" alt="Weather Icon"> --°C
                 </div>
-                <a href="login.php" class="sign-in-link">
-        <img src="img/svg/user.svg" alt="Profile Icon"> Войти </a>
+                <div class="auth-box">
+                    <?php
+                    if (isset($_SESSION['user_id'])) {
+                        $userId = $_SESSION['user_id'];
+                        $stmt = $conn->prepare("SELECT name FROM users WHERE id = ?");
+                        $stmt->bind_param("i", $userId);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                        $user = $result->fetch_assoc();
+
+                        if ($user) {
+                            echo '<span>Добро пожаловать, <a href="profile.php">' . htmlspecialchars($user['name']) . '</a></span>';
+                        } else {
+                            echo "Ошибка: пользователь не найден.";
+                        }
+                    } else {
+                        echo '<a href="login.php" class="sign-in-link">
+                              <img src="img/svg/user.svg" alt="Profile Icon"> Войти </a>';
+                    }
+                    ?>
+                </div>
             </div>
         </div>
     </header>
@@ -41,7 +65,7 @@
             <li><a href="#">Sports</a></li>
             <li><a href="#">People</a></li>
             <li><a href="#">Health</a></li>
-            <li><a href="#">Education</a></li>
+            <li><a href="/php/out.php">Education</a></li>
         </ul>
     </nav>
 

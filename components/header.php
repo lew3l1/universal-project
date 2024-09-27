@@ -39,7 +39,7 @@ session_start();
                         $user = $result->fetch_assoc();
 
                         if ($user) {
-                            echo '<span>Добро пожаловать, <a href="profile.php">' . htmlspecialchars($user['name']) . '</a></span>';
+                            echo '<span class="span-welcome">Добро пожаловать,  <a href="profile.php">' .  htmlspecialchars($user['name']) . '</a><a href="php/out.php"><img src="img/pictures/userclosed.png" alt=""></a> </span>';
                         } else {
                             echo "Ошибка: пользователь не найден.";
                         }
@@ -52,6 +52,7 @@ session_start();
             </div>
         </div>
     </header>
+    
 
     <nav>
         <ul>

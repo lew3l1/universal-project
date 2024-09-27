@@ -86,6 +86,16 @@ header {
     vertical-align: middle;
 }
 
+.span-welcome{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.span-welcome img{  
+    width: 25px;
+}
+
 nav ul {
     list-style: none;
     padding: 0;
